@@ -166,7 +166,7 @@ def fetch_youtube_data(query: str, max_results: int) -> List[Dict[str, Any]]:
         return videos
 
     except Exception as e:
-        print(f"⚠️  YouTube API Error: {e}")
+        print(f"️  YouTube API Error: {e}")
         return []
 
 
@@ -177,7 +177,7 @@ def main():
     args = parser.parse_args()
 
     print("╔════════════════════════════════════════════════════════════════════╗")
-    print("║        📺 YouTube Intelligence & Sentiment NLP Analyzer           ║")
+    print("║         YouTube Intelligence & Sentiment NLP Analyzer           ║")
     print("╚════════════════════════════════════════════════════════════════════╝")
     print(f"Topic:       '{args.query}'")
     print(f"Max Results: {args.count}")
@@ -185,7 +185,7 @@ def main():
 
     results = fetch_youtube_data(args.query, args.count)
 
-    print("\n--- ✅ ANALYSIS RESULTS ---")
+    print("\n---  ANALYSIS RESULTS ---")
     if not results:
         print("No videos matched the criteria.")
         return
@@ -193,11 +193,11 @@ def main():
     for i, item in enumerate(results, start=1):
         score = item['sentiment']
         if score > 0.05:
-            mood = f"🟢 Positive Audience Vibe ({score:+.2f})"
+            mood = f" Positive Audience Vibe ({score:+.2f})"
         elif score < -0.05:
-            mood = f"🔴 Critical / Negative Audience Vibe ({score:+.2f})"
+            mood = f" Critical / Negative Audience Vibe ({score:+.2f})"
         else:
-            mood = f"⚪ Neutral / Balanced Audience Vibe ({score:+.2f})"
+            mood = f" Neutral / Balanced Audience Vibe ({score:+.2f})"
 
         print(f"{i}. {item['title']}")
         print(f"   Channel:  {item['channel']}")
